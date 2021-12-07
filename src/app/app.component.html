@@ -1,0 +1,71 @@
+<div class="container"> 
+
+  <div class="botoes">
+    <button type="submit"  class="btn btn-primary" (click)="ativarTela('cliente')">Cliente</button>
+    <button type="submit" style="margin-left: 2%;" class="btn btn-danger" (click)="ativarTela('veiculo')">Veiculo</button>
+    <button type="submit" style="margin-left: 2%;" class="btn btn-success" (click)="ativarTela('venda')">Venda</button>
+  </div>
+   
+  <div class="container" *ngIf="controleTela=='cliente'">
+    <h2>Cadastro de Cliente</h2>
+    <form>
+      <div class="mb-3">
+        <label for="nome" class="form-label" >Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="cliente.nome">
+      </div>
+
+      <div class="mb-3">
+        <label for="cpf" class="form-label" >Cpf</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="cliente.cpf">
+      </div>
+      <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="cliente.telefone">
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="cadastrarCliente()">Salvar Cliente</button>
+    </form>
+
+
+    <br>
+    <h3></h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.cpf}}</td>
+          <td>{{cliente.telefone}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <div class="container" *ngIf="controleTela=='veiculo'">
+    <h2>Cadastro de Veiculo</h2>
+    <form>
+     
+      <button type="submit" class="btn btn-danger" (click)="cadastrarCliente()">Salvar Veiculo</button>
+    </form>
+  </div>
+
+
+  <div class="container" *ngIf="controleTela=='venda'">
+    <h2>Venda de Veículo</h2>
+    <form>
+      
+
+      <button type="submit" class="btn btn-success" (click)="cadastrarCliente()">Cadastrar Venda</button>
+    </form>
+  </div>
+
+
+</div>
