@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
 export class Cliente{
-  codigo?: number;
+  codigo?: string;
   nome?: string;
   cpf?: string;
   telefone?: string;
 }
 
 export class Veiculo{
-  codigo?: number;
+  codigo?: string;
   marca?: string;
   modelo?: string;
   cor?: string;
@@ -49,17 +49,27 @@ export class AppComponent {
 
 
   cadastrarCliente(){
+    this.cliente.codigo = Math.random().toString();
     this.clientes.push(this.cliente);
     this.cliente = new Cliente();
     return false;
   }
 
   cadastrarVeiculo(){
-
+    this.veiculo.codigo = Math.random().toString();
+    this.veiculos.push(this.veiculo);
+    this.veiculo = new Veiculo();
+    return false;
   }
 
   venderVeiculo(){
-
+    const cliente = this.clientes.find(c => c.codigo == this.venda.cliente);
+    const veiculo = this.veiculos.find(v => v.codigo == this.venda.veiculo);
+     this.venda.cliente = cliente;
+    this.venda.veiculo = veiculo;
+    this.venda.valorVenda = veiculo?.valor;
+    this.vendas.push(this.venda);
+    this.venda = new Venda();
   }
 
 

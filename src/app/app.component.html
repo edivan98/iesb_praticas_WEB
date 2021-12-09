@@ -54,25 +54,44 @@
     <form>
       <div class="mb-2">
         <label for="marca" class="form-label" >Marca</label>
-        <input type="text" class="form-control" id="marca" marca="" [(ngModel)]="veiculo.marca">
+        <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="veiculo.marca">
       </div>
 
       <div class="mb-2"> 
         <label for="modelo" class="form-label">Modelo</label>
-        <input type="text"  class="form-control" id="modelo" modelo="" [(ngModel)]="veiculo.modelo">
+        <input type="text"  class="form-control" id="modelo" name="modelo" [(ngModel)]="veiculo.modelo">
       </div>
 
       <div class="mb-2">
         <label for="cor" class="form-label">Cor</label>
-         <input type="text" class="form-control" id="cor" cor=""[(ngModel)]="veiculo.cor">
+         <input type="text" class="form-control" id="cor" name="cor" [(ngModel)]="veiculo.cor">
       </div>
     
       <div class="mb-2">
       <label for="valor" class="form-label">valor</label>
-      <input type="number" class="form-control" placeholder="valor" id="valor" name="valor" ngModel/>
+      <input type="number" class="form-control" placeholder="valor" id="valor" name="valor" [(ngModel)]="veiculo.valor"/>
       </div>
       <button type="submit" class="btn btn-danger" (click)="cadastrarVeiculo()">Salvar Veiculo</button>
     </form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Cor</th>
+          <th scope="col">valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let veiculo of veiculos">
+          <td>{{veiculo.marca}}</td>
+          <td>{{veiculo.modelo}}</td>
+          <td>{{veiculo.cor}}</td>
+          <td>{{veiculo.valor}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
 
@@ -80,9 +99,36 @@
   <div class="container" *ngIf="controleTela=='venda'">
     <h2>Venda de Veículo</h2>
     <form>
-      
-      <button type="submit" class="btn btn-success" (click)="cadastrarVeiculo()">Cadastrar Venda</button>
+
+      <select class="form-select" aria-label="Cliente" name="cliente" [(ngModel)]="venda.cliente">
+        <option selected>Selecione um Cliente</option>
+        <option *ngFor="let cliente of clientes" [value]="cliente.codigo" >{{cliente.nome}}</option>
+      </select>
+<br>
+      <select class="form-select" aria-label="Veiculo" name="veiculo" [(ngModel)]="venda.veiculo">
+        <option selected>Selecione um Veiculo</option>
+        <option *ngFor="let veiculo of veiculos" [value]="veiculo.codigo" >{{veiculo.marca}}</option>
+      </select>
+        <br>      
+      <button type="submit" class="btn btn-success" (click)="venderVeiculo()">Cadastrar Venda</button>
     </form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Veiulo</th>
+          <th scope="col">Valor</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="vendas.length>0">
+        <tr *ngFor="let venda of vendas">
+          <td>{{venda.cliente?.nome}}</td>
+          <td>{{venda.veiculo?.marca}}</td>
+          <td>{{venda.valorVenda}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 
