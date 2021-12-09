@@ -11,8 +11,8 @@ export class Veiculo{
   codigo?: number;
   marca?: string;
   modelo?: string;
+  cor?: string;
   valor?: number;
-  placa?: string;
 }
 
 export class Venda{
